@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fss-deployment
+  labels:
+    app: fss-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fss-deployment
+  template:
+    metadata:
+      labels:
+        app: fss-deployment
+    spec:
+      containers:
+        - image: gcr.io/signature-project2-19609-v1/falsk-summary-sfbu
+          imagePullPolicy: Always
+          name: fss-deployment
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "2048m"
+            limits:
+              memory: "128Mi"
+              cpu: "4096m"
+
